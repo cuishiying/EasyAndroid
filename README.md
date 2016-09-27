@@ -14,10 +14,13 @@ RxJava、Retrofit2、Butterknife、PhotoView、Picasso、OkHttp...
 关于作者
 ---------------
 Email: cuishiying163@163.com
+
 CSDN: http://blog.csdn.net/cuishiying
 
 感谢
 ---------------
 干货集中营提供的数据
+
 kaku2015
+
 所有的开源工作者
