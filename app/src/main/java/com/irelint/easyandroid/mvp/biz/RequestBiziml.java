@@ -2,7 +2,6 @@ package com.irelint.easyandroid.mvp.biz;
 
 import com.irelint.easyandroid.http.RetrofitManager;
 import com.irelint.easyandroid.mvp.entity.GirlData;
-import com.irelint.easyandroid.utils.LogUtils;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -30,8 +29,7 @@ public class RequestBiziml implements RequestBiz{
 
                     @Override
                     public void onError(Throwable e) {
-                        listener.onFailed(e);
-                    }
+                        listener.onFailed(e);                    }
 
                     @Override
                     public void onNext(GirlData girlData) {

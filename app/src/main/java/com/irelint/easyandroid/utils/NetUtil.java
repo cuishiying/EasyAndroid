@@ -19,7 +19,6 @@ package com.irelint.easyandroid.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
 import com.irelint.easyandroid.App;
 import com.irelint.easyandroid.R;
@@ -55,8 +54,7 @@ public class NetUtil {
     public static boolean isNetworkErrThenShowMsg() {
         if (!isNetworkAvailable()) {
             //TODO: 刚启动app Snackbar不起作用，延迟显示也不好使，这是why？
-            Toast.makeText(App.getAppContext(), App.getAppContext().getString(R.string.internet_error),
-                    Toast.LENGTH_SHORT).show();
+            ToastUtils.show(App.getAppContext(),App.getAppContext().getString(R.string.internet_error));
             return true;
         }
         return false;

@@ -20,6 +20,7 @@ import com.irelint.easyandroid.mvp.ui.activities.DetailActivity;
 import com.irelint.easyandroid.mvp.ui.activities.MainActivity;
 import com.irelint.easyandroid.mvp.ui.activities.GalleryActivity;
 import com.irelint.easyandroid.utils.AppManager;
+import com.irelint.easyandroid.utils.NetUtil;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
@@ -40,6 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initAnnotation();
+        NetUtil.isNetworkErrThenShowMsg();
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         initToolBar();

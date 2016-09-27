@@ -53,9 +53,12 @@ public class RetrofitManager {
     private static RetrofitManager mRetrofitManager;
 
     public RetrofitManager() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiConstants.SINA_PHOTO_HOST)
-                .client(getOkHttpClient()).addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiConstants.SINA_PHOTO_HOST)
+                .client(getOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
         mNewsService = retrofit.create(NewsService.class);
     }
 

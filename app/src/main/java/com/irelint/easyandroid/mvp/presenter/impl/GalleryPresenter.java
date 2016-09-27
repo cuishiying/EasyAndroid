@@ -37,7 +37,7 @@ public class GalleryPresenter extends BasePresenter<IGallery> {
             @Override
             public void onFailed(Throwable e) {
                 LogUtils.e(e.toString());
-                getMvpView().hideLoading();
+                getMvpView().showError();
             }
         });
     }
