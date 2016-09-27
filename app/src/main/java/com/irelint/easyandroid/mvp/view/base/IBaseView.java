@@ -15,4 +15,8 @@ public interface IBaseView {
      * 隐藏加载进度条
      */
     void hideLoading();
+    /**
+     * 加载失败
+     */
+    void showError();
 }

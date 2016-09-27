@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -17,7 +18,7 @@ import com.irelint.easyandroid.mvp.entity.GirlData;
 import com.irelint.easyandroid.mvp.presenter.impl.GalleryPresenter;
 import com.irelint.easyandroid.mvp.ui.activities.base.BaseActivity;
 import com.irelint.easyandroid.mvp.view.IGallery;
-import com.irelint.easyandroid.utils.LogUtils;
+import com.irelint.easyandroid.widget.ViewContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +30,11 @@ import butterknife.BindView;
  * 邮箱：cuishiying163@163.com
  */
 @BindValues(mIsHasNavigationView = true)
-public class TabActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,IGallery {
+public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,IGallery {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.viewContainer)
+    ViewContainer mViewContainer;
     @BindView(R.id.photo_rv)
     RecyclerView mPhotoRv;
 
@@ -52,9 +55,19 @@ public class TabActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
 
     @Override
     public void initViews() {
+        initViewContainer();
         initSwipeRefreshLayout();
         initRecyclerView();
         initPresenter();
+    }
+
+    private void initViewContainer() {
+        mViewContainer.setErrorButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.loadData();
+            }
+        });
     }
 
     private void initSwipeRefreshLayout() {
@@ -90,22 +103,27 @@ public class TabActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-
+        mPresenter.loadData();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void setData(GirlData data) {
-        LogUtils.e(data.toString());
         mAdapter.setNewData(data.results);
     }
 
     @Override
     public void showLoading() {
-
+        mViewContainer.showLoading();
     }
 
     @Override
     public void hideLoading() {
+        mViewContainer.hide();
+    }
 
+    @Override
+    public void showError() {
+        mViewContainer.showError();
     }
 }

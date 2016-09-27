@@ -18,7 +18,7 @@ import com.irelint.easyandroid.R;
 import com.irelint.easyandroid.annotation.BindValues;
 import com.irelint.easyandroid.mvp.ui.activities.DetailActivity;
 import com.irelint.easyandroid.mvp.ui.activities.MainActivity;
-import com.irelint.easyandroid.mvp.ui.activities.TabActivity;
+import com.irelint.easyandroid.mvp.ui.activities.GalleryActivity;
 import com.irelint.easyandroid.utils.AppManager;
 import com.squareup.picasso.Picasso;
 
@@ -138,7 +138,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         if (id == R.id.nav_camera) {
             mClass = MainActivity.class;
         } else if (id == R.id.nav_gallery) {
-            mClass = TabActivity.class;
+            mClass = GalleryActivity.class;
         } else if (id == R.id.nav_slideshow) {
             mClass = DetailActivity.class;
         } else if (id == R.id.nav_manage) {
