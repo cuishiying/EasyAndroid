@@ -15,13 +15,19 @@ import com.irelint.easyandroid.utils.LogUtils;
 
 public class GalleryPresenter extends BasePresenter<IGallery> {
     private RequestBiz requestBiz;
+    private boolean mShowLoding = true;
+    private int startPage = 1;
     public GalleryPresenter() {
         requestBiz = new RequestBiziml();
     }
     public void loadData(){
         checkViewAttached();//检查是否绑定
-        getMvpView().showLoading();
-        requestBiz.loadMeiziData(new OnRequestListener(){
+        if(mShowLoding){
+            getMvpView().showLoading();
+        }else{
+            getMvpView().hideLoading();
+        }
+        requestBiz.loadMeiziData(startPage,20,new OnRequestListener(){
 
             @Override
             public void onSuccess(final GirlData data) {
@@ -40,5 +46,14 @@ public class GalleryPresenter extends BasePresenter<IGallery> {
                 getMvpView().showError();
             }
         });
+    }
+    public void refresh(){
+        mShowLoding = false;
+        loadData();
+    }
+    public void loadMore(int page){
+        mShowLoding = false;
+        startPage = page;
+        loadData();
     }
 }

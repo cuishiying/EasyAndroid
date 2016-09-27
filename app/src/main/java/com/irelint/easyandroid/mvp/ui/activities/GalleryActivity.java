@@ -30,7 +30,7 @@ import butterknife.BindView;
  * 邮箱：cuishiying163@163.com
  */
 @BindValues(mIsHasNavigationView = true)
-public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,IGallery {
+public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,IGallery, BaseQuickAdapter.RequestLoadMoreListener {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.viewContainer)
@@ -87,6 +87,8 @@ public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.
                 setImageUrl(mContext,view,resultsEntity.url);
             }
         };
+        mAdapter.setOnLoadMoreListener(this);
+        mAdapter.openLoadMore(20,true);
         mPhotoRv.setAdapter(mAdapter);
     }
     private void initPresenter() {
@@ -103,13 +105,13 @@ public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.
 
     @Override
     public void onRefresh() {
-        mPresenter.loadData();
+        mPresenter.refresh();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void setData(GirlData data) {
-        mAdapter.setNewData(data.results);
+        mAdapter.addData(data.results);
     }
 
     @Override
@@ -124,6 +126,16 @@ public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.
 
     @Override
     public void showError() {
-        mViewContainer.showError();
+        if(mAdapter.getData().size()>0){
+            mViewContainer.hide();
+            mAdapter.notifyDataChangedAfterLoadMore(false);
+        }else{
+            mViewContainer.showError();
+        }
+    }
+
+    @Override
+    public void onLoadMoreRequested() {
+        mPresenter.loadMore(2);
     }
 }

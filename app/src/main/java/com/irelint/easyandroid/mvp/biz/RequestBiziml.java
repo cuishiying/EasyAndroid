@@ -17,8 +17,8 @@ public class RequestBiziml implements RequestBiz{
      * @param listener
      */
     @Override
-    public void loadMeiziData(final OnRequestListener listener) {
-        RetrofitManager.getInstance().getPhotoListObservable(20,1)
+    public void loadMeiziData(int page,int size,final OnRequestListener listener) {
+        RetrofitManager.getInstance().getPhotoListObservable(size,page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GirlData>() {
