@@ -50,7 +50,7 @@ public class GalleryActivity extends BaseActivity implements SwipeRefreshLayout.
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_tab;
+        return R.layout.activity_gallery;
     }
 
     @Override

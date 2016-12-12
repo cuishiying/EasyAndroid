@@ -19,6 +19,7 @@ import com.irelint.easyandroid.annotation.BindValues;
 import com.irelint.easyandroid.mvp.ui.activities.DetailActivity;
 import com.irelint.easyandroid.mvp.ui.activities.MainActivity;
 import com.irelint.easyandroid.mvp.ui.activities.GalleryActivity;
+import com.irelint.easyandroid.mvp.ui.activities.NewsActivity;
 import com.irelint.easyandroid.utils.AppManager;
 import com.irelint.easyandroid.utils.NetUtil;
 import com.squareup.picasso.Picasso;
@@ -144,7 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         } else if (id == R.id.nav_slideshow) {
             mClass = DetailActivity.class;
         } else if (id == R.id.nav_manage) {
-
+            mClass = NewsActivity.class;
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
